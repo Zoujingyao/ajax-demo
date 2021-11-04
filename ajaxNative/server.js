@@ -4,12 +4,12 @@ let express = require('express')
 
 let app = express()
 
-// 为了解析post请求的请求体
+// 中间件，用于解析post请求的请求体，参数的编码类型为urlencoded形式
 app.use(express.urlencoded({
     extended: true
 }))
 
-// 用于展示页面，暴露静态资源
+// 用于展示页面，暴露静态资源，不然没办法出发发送数据的操作
 // 打开localhost:3000/ajax_get.html可以看到对应的页面
 app.use(express.static(__dirname + '/public'))
 

@@ -51,9 +51,12 @@
             // 发送的方法GET、发送的地址http://localhost:2000/ajax_get、参数name和age
             xhr.open(
                 "GET",
-                // 请求地址+查询字符串参数，
-                "./ajax_get?name=jingyao&age=22"
-                // "/public"
+                // get请求在请求地址中带参数，参数以查询字符串形式，urlencoded编码形式
+                // "./ajax_get?name=jingyao&age=22"
+                // 为了兼容IE，避开其强缓存机制，可以拼接时间戳为请求参数
+                "http://localhost:3000/ajax_get?name=jingyao&age=22&t=" + Date.now(),
+                // IE不支持模板字符串
+                // `http://localhost:3000/ajax_get?name=jingyao&age=22&t=${Date.now()}`
             );
 
             // 4. 调用send方法（发送请求）
@@ -81,6 +84,7 @@
             // 声明请求体的格式
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+            // post请求参数放在请求体, form data
             xhr.send("name=zoujingwen&age=23");
         }
 
